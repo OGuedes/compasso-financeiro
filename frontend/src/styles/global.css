@@ -56,7 +56,7 @@ input::placeholder, textarea::placeholder { color: #7b8983; opacity: 1; }
 .mobile-brand { display: none; }
 .month-picker { display: flex; align-items: center; gap: 12px; }
 .month-picker span { color: var(--muted); font-size: .72rem; font-weight: 700; }
-.month-picker input { width: 154px; }
+.month-picker input { width: 190px; min-width: 190px; padding-inline: 14px; color-scheme: light; }
 .content { width: min(1500px, 100%); margin: 0 auto; padding: 42px clamp(24px, 4vw, 60px) 64px; }
 .mobile-nav { display: none; }
 
@@ -219,6 +219,9 @@ label > span { display: block; margin-bottom: 7px; color: #40544d; font-size: .7
 .range { height: 26px; margin-top: 25px; padding: 0; border: 0; accent-color: var(--green); background: transparent; }
 .range-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: .62rem; }
 .percentage-input { width: 150px; display: block; margin-top: 25px; }
+.budget-rule-note { margin-top: 22px; padding: 14px; display: grid; grid-template-columns: auto 1fr; gap: 10px; border-radius: 12px; color: var(--green); background: var(--green-soft); }
+.budget-rule-note strong { display: block; color: var(--forest); font-size: .74rem; }
+.budget-rule-note p { margin: 4px 0 0; color: #405f55; font-size: .7rem; line-height: 1.5; }
 .goal-result { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1px 1fr auto; align-items: center; gap: clamp(20px, 4vw, 48px); color: #fff; background: var(--forest); }
 .goal-result span, .goal-result strong, .goal-result small { display: block; }
 .goal-result span { color: #b8cec5; font-size: .68rem; }
@@ -245,6 +248,7 @@ label > span { display: block; margin-bottom: 7px; color: #40544d; font-size: .7
   .month-context { display: none; }
   .month-picker { gap: 8px; }
   .month-picker span { display: none; }
+  .month-picker input { width: 178px; min-width: 178px; }
   .content { padding: 30px 18px 100px; }
   .mobile-nav { position: fixed; z-index: 30; inset: auto 0 0; height: 72px; display: grid; grid-template-columns: repeat(5, 1fr); padding: 7px 8px calc(7px + env(safe-area-inset-bottom)); border-top: 1px solid #d4d4ca; background: #fffdf8; }
   .mobile-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: .58rem; font-weight: 700; }

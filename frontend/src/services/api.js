@@ -1,4 +1,5 @@
 import axios from 'axios'
+import localApi from './localApi'
 
 const developmentApi = 'http://localhost:8000/api'
 const packagedApi = `${window.location.origin}/api`
@@ -19,4 +20,4 @@ api.interceptors.response.use(
   },
 )
 
-export default api
+export default import.meta.env.VITE_DATA_MODE === 'local' ? localApi : api

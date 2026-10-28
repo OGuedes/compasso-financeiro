@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Check, Landmark, PiggyBank, Save } from 'lucide-react'
+import { Check, Info, Landmark, PiggyBank, Save } from 'lucide-react'
 import { ErrorState, LoadingState } from '../components/Feedback'
 import PageHeader from '../components/PageHeader'
 import { useMonth } from '../context/MonthContext'
@@ -62,9 +62,13 @@ export default function IncomeGoal() {
         <section className="goal-form" aria-labelledby="goal-title">
           <span className="feature-icon saving"><PiggyBank size={24} /></span>
           <div className="goal-title-row"><div><h2 id="goal-title">Quanto você quer reservar?</h2><p>A sugestão inicial segue a regra 50/30/20.</p></div><strong>{percentage}%</strong></div>
-          <input className="range" type="range" min="0" max="50" step="1" value={percentage} onChange={(event) => setPercentage(Number(event.target.value))} aria-label="Percentual da meta de economia" />
-          <div className="range-labels"><span>0%</span><span>20% sugerido</span><span>50%</span></div>
+          <input className="range" type="range" min="0" max="100" step="1" value={percentage} onChange={(event) => setPercentage(Number(event.target.value))} aria-label="Percentual da meta de economia" />
+          <div className="range-labels"><span>0%</span><span>20% sugerido</span><span>100%</span></div>
           <label className="percentage-input"><span>Percentual exato</span><input type="number" min="0" max="100" step="0.5" value={percentage} onChange={(event) => setPercentage(Number(event.target.value))} /></label>
+          <aside className="budget-rule-note" aria-label="Sobre a regra 50 30 20">
+            <Info size={18} aria-hidden="true" />
+            <div><strong>O que é a regra 50/30/20?</strong><p>É uma referência: 50% para necessidades, 30% para desejos e 20% para poupar ou pagar dívidas. Sua meta pode ser qualquer valor entre 0% e 100%.</p></div>
+          </aside>
         </section>
 
         <section className="goal-result" aria-live="polite">

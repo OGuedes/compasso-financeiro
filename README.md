@@ -2,9 +2,9 @@
 
 Aplicação completa para planejar renda, gastos fixos, compras eventuais, dívidas e meta de economia.
 
-## Baixar para Windows
+## Baixar o programa
 
-Baixe o executável portátil na página de [últimos lançamentos](https://github.com/OGuedes/compasso-financeiro/releases/latest). Não é necessário instalar PHP, MySQL, Node.js ou Codex.
+Baixe o executável para Windows ou o APK para Android na página de [últimos lançamentos](https://github.com/OGuedes/compasso-financeiro/releases/latest). Não é necessário instalar PHP, MySQL, Node.js ou Codex.
 
 ## Pré-requisitos
 
@@ -69,6 +69,20 @@ npm run dist
 
 O arquivo final é criado em `desktop/dist/Compasso-1.0.0-portable.exe`. Os dados ficam no perfil do usuário, em `%APPDATA%\compasso-desktop\compasso.sqlite`, e permanecem salvos entre execuções.
 
+## Aplicativo Android offline
+
+O APK usa o mesmo frontend, mas guarda os dados localmente no armazenamento privado do aplicativo. Ele funciona sem API, internet ou Codex. Os dados permanecem salvos ao fechar e abrir o aplicativo, mas são removidos se o usuário limpar os dados do app ou desinstalá-lo.
+
+```bash
+cd frontend
+npm install
+npm run build:android
+cd android
+./gradlew assembleDebug
+```
+
+O APK é criado em `frontend/android/app/build/outputs/apk/debug/app-debug.apk`.
+
 ## Estrutura
 
 ```text
@@ -79,6 +93,7 @@ backend/
   src/             Config, Controllers, Core, Middleware, Models, Repositories e Services
   tests/           testes HTTP integrados
 frontend/
+  android/         projeto nativo e geração do APK
   src/components/  componentes reutilizáveis
   src/context/     mês compartilhado entre telas
   src/pages/       dashboard, gastos, compras, renda, meta e dívidas
@@ -95,6 +110,6 @@ Exemplos de todas as requisições estão em [`requests.http`](requests.http).
 - A cópia de recorrentes ignora nomes já existentes no mês de destino.
 - A meta padrão é 20% quando o mês ainda não possui configuração.
 - O saldo livre desconta gastos fixos, compras eventuais e a reserva planejada.
-- O frontend mantém o mês selecionado em um contexto compartilhado e carrega as páginas sob demanda.
+- O frontend mantém o mês selecionado salvo no dispositivo e carrega as páginas sob demanda.
 - Dívidas são globais, não ligadas a um único mês; pagamentos e parcelas alimentam o saldo devedor sem duplicar gastos mensais.
 

@@ -1,0 +1,8 @@
+{
+  "appId": "br.com.compasso.financeiro",
+  "appName": "Compasso",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

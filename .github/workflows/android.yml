@@ -1,0 +1,50 @@
+name: Gerar APK Android
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/android.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Instalar dependências
+        working-directory: frontend
+        run: npm ci
+
+      - name: Preparar aplicativo Android
+        working-directory: frontend
+        run: npm run build:android
+
+      - name: Gerar APK
+        working-directory: frontend/android
+        run: ./gradlew assembleDebug
+
+      - name: Nomear APK
+        run: cp frontend/android/app/build/outputs/apk/debug/app-debug.apk Compasso-1.0.0-Android.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Compasso-Android
+          path: Compasso-1.0.0-Android.apk
+          if-no-files-found: error

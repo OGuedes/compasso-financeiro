@@ -20,7 +20,7 @@
     "appId": "br.com.compasso.financeiro",
     "productName": "Compasso",
     "asar": true,
-    "compression": "store",
+    "compression": "normal",
     "directories": {
       "output": "dist"
     },
