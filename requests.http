@@ -1,0 +1,89 @@
+@baseUrl = http://localhost:8000/api
+@mes = 2026-10
+
+### Criar ou atualizar renda
+POST {{baseUrl}}/incomes
+Content-Type: application/json
+
+{"descricao":"Salário","valor":5200,"mes_referencia":"{{mes}}"}
+
+### Listar rendas
+GET {{baseUrl}}/incomes?mes={{mes}}
+
+### Criar categoria
+POST {{baseUrl}}/categories
+Content-Type: application/json
+
+{"nome":"Educação"}
+
+### Listar categorias
+GET {{baseUrl}}/categories
+
+### Criar gasto fixo
+POST {{baseUrl}}/expenses
+Content-Type: application/json
+
+{"nome":"Internet","valor":130,"mes_referencia":"{{mes}}","dia_vencimento":12,"recorrente":true}
+
+### Listar gastos fixos
+GET {{baseUrl}}/expenses?mes={{mes}}&sort=valor&order=asc
+
+### Marcar gasto como pago/não pago
+PATCH {{baseUrl}}/expenses/1/pay
+
+### Editar gasto fixo
+PUT {{baseUrl}}/expenses/1
+Content-Type: application/json
+
+{"nome":"Internet fibra","valor":139.90,"mes_referencia":"{{mes}}","dia_vencimento":12,"recorrente":true}
+
+### Copiar recorrentes
+POST {{baseUrl}}/expenses/copy
+Content-Type: application/json
+
+{"de":"2026-10","para":"2026-11"}
+
+### Criar compra eventual
+POST {{baseUrl}}/purchases
+Content-Type: application/json
+
+{"nome":"Supermercado","valor":387.45,"data":"2026-10-08","observacao":"Compra do mês"}
+
+### Listar compras eventuais
+GET {{baseUrl}}/purchases?mes={{mes}}
+
+### Definir meta
+PUT {{baseUrl}}/savings-goal
+Content-Type: application/json
+
+{"mes_referencia":"{{mes}}","percentual":20}
+
+### Obter meta
+GET {{baseUrl}}/savings-goal?mes={{mes}}
+
+### Resumo mensal
+GET {{baseUrl}}/summary?mes={{mes}}
+
+### Alertas
+GET {{baseUrl}}/alerts
+
+### Criar dívida
+POST {{baseUrl}}/debts
+Content-Type: application/json
+
+{"nome":"Empréstimo pessoal","credor":"Banco","valor_total":12000,"total_parcelas":24,"parcelas_pagas":4,"valor_pago":2000,"dia_vencimento":15}
+
+### Listar dívidas em aberto
+GET {{baseUrl}}/debts?status=open
+
+### Pagar uma parcela
+PATCH {{baseUrl}}/debts/1/pay-installment
+
+### Editar dívida
+PUT {{baseUrl}}/debts/1
+Content-Type: application/json
+
+{"observacao":"Acordo renegociado"}
+
+### Excluir dívida
+DELETE {{baseUrl}}/debts/1

@@ -1,0 +1,56 @@
+{
+  "name": "compasso-desktop",
+  "version": "1.0.0",
+  "description": "Controle financeiro pessoal para Windows",
+  "main": "main.cjs",
+  "author": "Gustavo",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build:frontend": "npm --prefix ../frontend run build",
+    "prepare:runtime": "powershell -NoProfile -ExecutionPolicy Bypass -File prepare-runtime.ps1",
+    "dist": "npm run prepare:runtime && npm run build:frontend && electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "26.8.0"
+  },
+  "build": {
+    "appId": "br.com.compasso.financeiro",
+    "productName": "Compasso",
+    "asar": true,
+    "compression": "store",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "router.php",
+        "to": "router.php"
+      },
+      {
+        "from": "../backend",
+        "to": "backend",
+        "filter": ["**/*", "!tests/**", "!.env"]
+      },
+      {
+        "from": "../frontend/dist",
+        "to": "frontend"
+      },
+      {
+        "from": "php-runtime",
+        "to": "php"
+      }
+    ],
+    "win": {
+      "target": ["portable"],
+      "artifactName": "Compasso-${version}-portable.${ext}",
+      "signAndEditExecutable": false
+    }
+  }
+}

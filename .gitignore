@@ -1,0 +1,11 @@
+backend/.env
+backend/tests/*.sqlite
+frontend/.env
+frontend/node_modules/
+frontend/dist/
+desktop/node_modules/
+desktop/dist/
+desktop/php-runtime/
+desktop/php-runtime.zip
+.impeccable/review/
+
