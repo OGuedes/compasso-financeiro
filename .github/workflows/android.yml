@@ -36,7 +36,9 @@ jobs:
 
       - name: Gerar APK
         working-directory: frontend/android
-        run: ./gradlew assembleDebug
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Nomear APK
         run: cp frontend/android/app/build/outputs/apk/debug/app-debug.apk Compasso-1.0.0-Android.apk
